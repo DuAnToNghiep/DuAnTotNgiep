@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '.*');
+// Route::get('/{any}', function () {
+//     return view('index');
+// })->where('any', '.*');
+
+
+Route::resource('payments', PaymentController::class);
