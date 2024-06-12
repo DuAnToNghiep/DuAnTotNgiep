@@ -23,4 +23,6 @@ class Payment extends Model
     ];
 
     public $timestamps = false; // Tắt timestamps mặc định
+    const CREATED_AT = 'create_date';
+    const UPDATED_AT ='update_date';
 }

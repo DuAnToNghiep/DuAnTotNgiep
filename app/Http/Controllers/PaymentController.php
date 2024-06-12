@@ -62,6 +62,8 @@ class PaymentController extends Controller
         // Không cần thiết cho API. Dùng cho việc trả về view để chỉnh sửa (nếu là ứng dụng web).
     }
 
+    
+
     /**
      * Cập nhật tài nguyên cụ thể trong kho.
      */
