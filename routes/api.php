@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\BillDetailController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Models\Carts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-//lấy toàn bộ thông tin thanh toán
+
+// Tuan Anh
+Route::apiResource('bill', BillController::class); // API bill
+Route::apiResource('billDetail', BillDetailController::class); // API bill detail
+Route::apiResource('cart', CartController::class);// API cart
