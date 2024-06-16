@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartDetailsController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ColorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');
+Route::resource('cart_details', CartDetailsController::class);
+Route::resource('categories', CategoriesController::class);
+Route::resource('colors', ColorsController::class);
