@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Size;
+use App\Models\Role ;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
-class SizeController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class SizeController extends Controller
     public function index()
     {
         //
-        $data = Size::query()->latest()->paginate(5);
+        $data = Role::query()->latest();
         return response()->json($data);
+    
     }
 
     /**
@@ -24,7 +26,7 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         //
-        Size::query()->create($request->all());
+        Role::query()->create($request->all());
 
         return response()->json([], 204);
     }
@@ -32,10 +34,19 @@ class SizeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Size $size)
+    public function show(string $id)
     {
         //
-        return response()->json($size);
+        try {
+            $category = Role::query()->findOrFail($id);
+
+            return response()->json($category);
+        } catch (\Exception $exception) {
+
+            Log::error($exception->getMessage(), [$exception]);
+
+            return response()->json('Server error!', 500);
+        }
     }
 
     /**
@@ -44,7 +55,7 @@ class SizeController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $Role = Size::query()->findOrFail($id);
+        $Role = Role::query()->findOrFail($id);
 
         $Role->update($request->all()); 
 
@@ -57,7 +68,7 @@ class SizeController extends Controller
     public function destroy(string $id)
     {
         //
-        Size::destroy($id);
+        Role::destroy($id);
 
         return response()->json([], 204);
     }

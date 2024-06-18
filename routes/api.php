@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\SizeController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    
 });
+
 
 Route::apiResource('roles',RoleController::class);
 route::apiResource('users',UserController::class);
