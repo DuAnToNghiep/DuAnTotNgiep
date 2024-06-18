@@ -4,7 +4,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
-
+use App\Http\Controllers\ProductController;
 
 use function Psy\debug;
 
@@ -44,7 +44,10 @@ Route::prefix('admin')->group(function () {
         Route::put('/{id}', [ImageController::class, 'update'])->name('images.update');
         Route::delete('/{id}', [ImageController::class, 'destroy'])->name('images.destroy');
     });
+    Route::resource('products', ProductController::class);
 });
+
+
 // Route::prefix('admin')->group(function () {
 //     Route::resource('products', ProductController::class);
 //     Route::resource('categories', CategoryController::class);
