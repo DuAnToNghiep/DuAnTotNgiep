@@ -9,10 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'product'; // Chỉ định bảng 'product'
+    protected $table = 'product'; // Chỉ định tên bảng 'product'
 
     protected $fillable = [
         'product_name',
         'product_price',
     ];
+
+    public $timestamps = false; // Vô hiệu hóa timestamps
+
+    // Không cần thiết phải khai báo $incrementing = false; để mặc định là true
+
+    // Nếu bạn muốn tự động tăng (auto-increment) cho trường id, hãy xóa dòng $incrementing = false; hoặc đặt thành true
 }

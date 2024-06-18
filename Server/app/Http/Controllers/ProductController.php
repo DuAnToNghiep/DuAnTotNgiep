@@ -7,24 +7,24 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    // Hiển thị danh sách sản phẩm với phân trang và tìm kiếm
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->query('search');
         $products = Product::query()
             ->where('product_name', 'LIKE', "%{$search}%")
+            ->orWhere('id', $search)
+            ->orWhere('product_price', $search)
+            ->orderBy('id')
             ->paginate(10);
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'search'));
     }
 
-    // Hiển thị form tạo sản phẩm mới
     public function create()
     {
         return view('products.create');
     }
 
-    // Lưu sản phẩm mới
     public function store(Request $request)
     {
         $request->validate([
@@ -37,19 +37,16 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
-    // Hiển thị chi tiết sản phẩm
     public function show(Product $product)
     {
         return view('products.show', compact('product'));
     }
 
-    // Hiển thị form chỉnh sửa sản phẩm
     public function edit(Product $product)
     {
         return view('products.edit', compact('product'));
     }
 
-    // Cập nhật sản phẩm
     public function update(Request $request, Product $product)
     {
         $request->validate([
@@ -62,7 +59,6 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
-    // Xóa sản phẩm
     public function destroy(Product $product)
     {
         $product->delete();
