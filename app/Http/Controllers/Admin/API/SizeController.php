@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\API;
 
+use App\Http\Controllers\Controller;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
-class Role extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,6 +14,8 @@ class Role extends Controller
     public function index()
     {
         //
+        $data = Size::query()->latest()->paginate(5);
+        return response()->json($data);
     }
 
     /**
@@ -20,14 +24,18 @@ class Role extends Controller
     public function store(Request $request)
     {
         //
+        Size::query()->create($request->all());
+
+        return response()->json([], 204);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Size $size)
     {
         //
+        return response()->json($size);
     }
 
     /**
@@ -36,6 +44,11 @@ class Role extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $Role = Size::query()->findOrFail($id);
+
+        $Role->update($request->all()); 
+
+        return response()->json($Role);
     }
 
     /**
@@ -44,5 +57,8 @@ class Role extends Controller
     public function destroy(string $id)
     {
         //
+        Size::destroy($id);
+
+        return response()->json([], 204);
     }
 }

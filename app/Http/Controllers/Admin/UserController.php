@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -16,8 +14,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::query()->latest()->paginate(5);
-        return response()->json($data);
+        //
+        $data=User::query()
+        ->latest("id")->paginate(6);
+        return view("admin.users.index",compact("data"));
+    }
+
+  
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        return view("admin.users.create");
     }
 
     /**
@@ -26,12 +36,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->except('user_image');
-        if($request->hasFile('user_image')) {
-            $data['user_image']= Storage::put('users', $request->file('user_image'));
+        $request->validate([
+            'image' => ['image']
+        ]);
+        $data = $request->except(['image']);
+        if($request->hasFile('image')){
+            $data['image'] = Storage::put('posts', $request->file('image'));
         }
-        User::create($data);
-        return response()->json([],204);
+        User::query()->create($data);
+        return redirect()->route("admin.users.index");
     }
 
     /**
@@ -40,7 +53,18 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return response()->json($user);
+        $data=User::query()->findOrFail( $user->id );
+        return view("admin.users.show",compact("data"));
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
+    {
+        //
+        return view("admin.users.edit",compact("user"));
     }
 
     /**
@@ -49,21 +73,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-         //
-         $data = $request->except('user_image');
-         if($request->hasFile('user_image')) {
-             $data['user_image']= Storage::put('users', $request->file('user_image'));
-         }
-         $sr = $user->image;
-         
-         $user ->update($data);
-         
-         if($request->hasFile('user_image')&& Storage::exists($sr)) {
-             Storage::delete($sr);
-         }
-        return response()->json([],204);
-
-        
+       $user->update($request->all());
+       return redirect()->route("admin.users.index");
     }
 
     /**
@@ -72,10 +83,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-        if(Storage::exists($user->image)) {
-            Storage::delete($user->image);
-        }
-        $user->delete();
-       return response()->json([],204);
+         User::destroy($user->id);
+        return redirect()->route('admin.users.index');
     }
 }

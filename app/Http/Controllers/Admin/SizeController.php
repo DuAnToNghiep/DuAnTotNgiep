@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Size;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 class SizeController extends Controller
 {
     /**
@@ -14,8 +14,19 @@ class SizeController extends Controller
     public function index()
     {
         //
-        $data = Size::query()->latest()->paginate(5);
-        return response()->json($data);
+        $data=Size::query()
+        ->latest("id")->paginate(6);
+        return view("admin.sizes.index",compact("data"));
+    }
+
+  
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        return view("admin.sizes.create");
     }
 
     /**
@@ -24,9 +35,15 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         //
-        Size::query()->create($request->all());
-
-        return response()->json([], 204);
+        $request->validate([
+            'image' => ['image']
+        ]);
+        $data = $request->except(['image']);
+        if($request->hasFile('image')){
+            $data['image'] = Storage::put('posts', $request->file('image'));
+        }
+        Size::query()->create($data);
+        return redirect()->route("admin.sizes.index");
     }
 
     /**
@@ -35,30 +52,37 @@ class SizeController extends Controller
     public function show(Size $size)
     {
         //
-        return response()->json($size);
+        $data=Size::query()->findOrFail( $size->id );
+        return view("admin.sizes.show",compact("data"));
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Size $size)
+    {
+        //
+        return view("admin.sizes.edit",compact("Size"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Size $size)
     {
         //
-        $Role = Size::query()->findOrFail($id);
-
-        $Role->update($request->all()); 
-
-        return response()->json($Role);
+       $size->update($request->all());
+       return redirect()->route("admin.sizes.index");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Size $size)
     {
         //
-        Size::destroy($id);
-
-        return response()->json([], 204);
+         Size::destroy($size->id);
+        return redirect()->route('admin.sizes.index');
     }
 }

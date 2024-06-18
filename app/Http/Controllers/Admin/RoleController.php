@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Role ;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
+use App\Models\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 class RoleController extends Controller
 {
     /**
@@ -15,9 +16,19 @@ class RoleController extends Controller
     public function index()
     {
         //
-        $data = Role::query()->latest();
-        return response()->json($data);
-    
+        $data=Role::query()
+        ->latest("id")->paginate(6);
+        return view("admin.roles.index",compact("data"));
+    }
+
+  
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        return view("admin.roles.create");
     }
 
     /**
@@ -26,50 +37,54 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
-        Role::query()->create($request->all());
-
-        return response()->json([], 204);
+        $request->validate([
+            'image' => ['image']
+        ]);
+        $data = $request->except(['image']);
+        if($request->hasFile('image')){
+            $data['image'] = Storage::put('posts', $request->file('image'));
+        }
+        Role::query()->create($data);
+        return redirect()->route("admin.roles.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Role $role)
     {
         //
-        try {
-            $category = Role::query()->findOrFail($id);
+        $data=Role::query()->findOrFail( $role->id );
+        return view("admin.roles.show",compact("data"));
 
-            return response()->json($category);
-        } catch (\Exception $exception) {
+    }
 
-            Log::error($exception->getMessage(), [$exception]);
-
-            return response()->json('Server error!', 500);
-        }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Role $role)
+    {
+        //
+        return view("admin.roles.edit",compact("role"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
         //
-        $Role = Role::query()->findOrFail($id);
-
-        $Role->update($request->all()); 
-
-        return response()->json($Role);
+       $role->update($request->all());
+       return redirect()->route("admin.roles.index");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
         //
-        Role::destroy($id);
-
-        return response()->json([], 204);
+         Role::destroy($role->id);
+        return redirect()->route('admin.roles.index');
     }
 }
