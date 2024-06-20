@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <a class="btn btn-info" href="{{ route('categories.create') }}">Add New Category</a>
+    <br>
     <table border="1">
         <thead>
             <th>Id</th>
@@ -17,23 +19,17 @@
 
         </thead>
         <tbody>
-            @foreach ($categories as $item)
+            @foreach ($categories as $category)
                 <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->description }}</td>
-                    {{-- <td>
-                        <a href="">Xem</a>
-                        <a href="{{ route('sua', $item->id) }}">Sua</a>
-                        <form action="{{ route('dell', $item->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Xoas</button>
-                        </form>
-                    </td> --}}
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->description }}</td>
+
                     <td>
-                        <a href="Xoa">Xoa</a>
-                        <a href="Sua">Sua</a>
+
+                        <a href="{{ route('categories.edit', $category->id) }}">Sửa</a> |
+                        <a href="{{ route('categories.destroy', $category->id) }}">Xóa</a>
+
                     </td>
 
                 </tr>

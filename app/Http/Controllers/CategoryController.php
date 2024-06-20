@@ -38,7 +38,7 @@ class CategoryController extends Controller
         Category::create($request->all());
 
         return redirect()->route('categories.index')
-            ->with('success', 'Category created successfully.');
+            ->with('Tạo Thành Công');
     }
 
 
@@ -63,17 +63,17 @@ class CategoryController extends Controller
         $category->update($request->all());
 
         return redirect()->route('categories.index')
-            ->with('success', 'Category updated successfully.');
+            ->with('Chỉnh sửa thành công !');
     }
 
     /**
      * Remove
      */
+
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories.index')->with('Xóa Thành Công !');
     }
 }
