@@ -60,12 +60,12 @@ class ColorController extends Controller
     {
         $request->validate([
             'color_name' => 'required|string|max:255',
-            'status' => 'required|' . $color->id,
+            'status' => 'required|string|',
         ]);
 
         $color->update([
-            'color_name' => $request->name,
-            'status' => $request->code,
+            'color_name' => $request->color_name,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('colors.index')->with('Cập nhật thành công !');
