@@ -18,6 +18,6 @@ class Image extends Model
     // Define the relationship with ProductDetail
     public function productDetail()
     {
-        return $this->belongsTo(productDetail::class);
+        // return $this->belongsTo(productDetail::class);
     }
 }
