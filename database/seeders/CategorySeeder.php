@@ -10,11 +10,11 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'Electronics', 'description' => 'mô tả'],
-            ['name' => 'Clothing', 'description' => 'Mô tả 2'],
-            ['name' => 'Books', 'description' => 'mô tả 3'],
-            ['name' => 'Toys', 'description' => 'mô tả 4'],
-            ['name' => 'Furniture', 'description' => 'mô tả 4'],
+            ['category_name' => 'Electronics', 'slug' => 'mô tả'],
+            ['category_name' => 'Clothing', 'slug' => 'Mô tả 2'],
+            ['category_name' => 'Books', 'slug' => 'mô tả 3'],
+            ['category_name' => 'Toys', 'slug' => 'mô tả 4'],
+            ['category_name' => 'Furniture', 'slug' => 'mô tả 4'],
         ];
 
         // Insert data vào bảng categories

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
+    <title>Categorie</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <thead>
             <th>Id</th>
             <th>Name</th>
-            <th>Description </th>
+            <th>slug </th>
             <th>Action </th>
 
         </thead>
@@ -22,8 +22,8 @@
             @foreach ($categories as $category)
                 <tr>
                     <td>{{ $category->id }}</td>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->description }}</td>
+                    <td>{{ $category->category_name }}</td>
+                    <td>{{ $category->slug }}</td>
 
                     <td>
 

@@ -16,12 +16,12 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="">Name </label>
-                <input type="text" class="form-control" placeholder="Tên Màu" name="name" onkeyup="ChangeToSlug();"
-                    value="{{ $color->name }}">
+                <input type="text" class="form-control" placeholder="Tên Màu" name="color_name"
+                    onkeyup="ChangeToSlug();" value="{{ $color->color_name }}">
             </div>
             <div class="form-group">
-                <label for="">Code </label>
-                <textarea id="description" name="code">{{ $color->code }}</textarea>
+                <label for="">Status </label>
+                <textarea id="description" name="status">{{ $color->status }}</textarea>
             </div>
             {{-- <input type="text" class="form-control" placeholder="Description" name="description"
                 onkeyup="ChangeToSlug();" value="{{ $category->description }}"> --}}

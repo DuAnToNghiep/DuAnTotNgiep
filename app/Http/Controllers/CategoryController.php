@@ -31,8 +31,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'category_name' => 'required|string|max:255',
+            'slug' => 'nullable|string',
         ]);
 
         Category::create($request->all());
@@ -56,8 +56,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'category_name' => 'required|string|max:255',
+            'slug' => 'nullable|string',
         ]);
 
         $category->update($request->all());

@@ -17,12 +17,12 @@
 
         <div>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="" required>
+            <input type="text" id="name" name="color_name" value="" required>
         </div>
 
         <div>
-            <label for="code">Code:</label>
-            <input type="text" id="code" name="code" value="" required>
+            <label for="Status">Status:</label>
+            <input type="text" id="code" name="status" value="" required>
         </div>
 
         <button type="submit">Create</button>

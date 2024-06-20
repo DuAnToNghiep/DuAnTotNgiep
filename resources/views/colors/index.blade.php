@@ -15,7 +15,7 @@
         <thead>
             <th>Id</th>
             <th>Name</th>
-            <th>Code </th>
+            <th>status </th>
             <th>Action </th>
 
         </thead>
@@ -23,8 +23,8 @@
             @foreach ($colors as $color)
                 <tr>
                     <td>{{ $color->id }}</td>
-                    <td>{{ $color->name }}</td>
-                    <td>{{ $color->code }}</td>
+                    <td>{{ $color->color_name }}</td>
+                    <td>{{ $color->status }}</td>
 
                     <td>
 

@@ -11,11 +11,11 @@ class ColorSeeder extends Seeder
     public function run()
     {
         $colors = [
-            ['name' => 'Red', 'code' => '#FF0000'],
-            ['name' => 'Green', 'code' => '#00FF00'],
-            ['name' => 'Blue', 'code' => '#0000FF'],
-            ['name' => 'Yellow', 'code' => '#FFFF00'],
-            ['name' => 'Purple', 'code' => '#800080'],
+            ['color_name' => 'Red', 'status' => '#FF0000'],
+            ['color_name' => 'Green', 'status' => '#00FF00'],
+            ['color_name' => 'Blue', 'status' => '#0000FF'],
+            ['color_name' => 'Yellow', 'status' => '#FFFF00'],
+            ['color_name' => 'Purple', 'status' => '#800080'],
         ];
 
 

@@ -31,14 +31,14 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|size:7|unique:colors,code', // Validate mã màu có độ dài 7 ký tự và duy nhất
+            'color_name' => 'required|string|max:255',
+            'status' => 'required|string|',
         ]);
 
 
         Color::create([
-            'name' => $request->name,
-            'code' => $request->code,
+            'color_name' => $request->color_name,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('colors.index')->with('Tạo Thành Công !');
@@ -59,13 +59,13 @@ class ColorController extends Controller
     public function update(Request $request, Color $color)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|size:7|unique:colors,code,' . $color->id,
+            'color_name' => 'required|string|max:255',
+            'status' => 'required|' . $color->id,
         ]);
 
         $color->update([
-            'name' => $request->name,
-            'code' => $request->code,
+            'color_name' => $request->name,
+            'status' => $request->code,
         ]);
 
         return redirect()->route('colors.index')->with('Cập nhật thành công !');
