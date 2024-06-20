@@ -19,8 +19,8 @@ class ColorSeeder extends Seeder
         ];
 
 
-        foreach ($colors as $item) {
-            Color::create($item);
+        foreach ($colors as $color) {
+            Color::create($color);
         }
     }
 }

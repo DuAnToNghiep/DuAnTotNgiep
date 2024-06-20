@@ -6,7 +6,7 @@ use App\Http\Controllers\ColorController;
 
 
 
-
+// Categorys
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
@@ -15,5 +15,10 @@ Route::put('/categories/{category}', [CategoryController::class, 'update'])->nam
 Route::get('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
-
-// Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
+// Colors
+Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
+Route::get('/colors/create', [ColorController::class, 'create'])->name('colors.create');
+Route::post('/colors', [ColorController::class, 'store'])->name('colors.store');
+Route::get('/colors/{color}/edit', [ColorController::class, 'edit'])->name('colors.edit');
+Route::put('/colors/{color}', [ColorController::class, 'update'])->name('colors.update');
+Route::get('/colors/{color}', [ColorController::class, 'destroy'])->name('colors.destroy');
