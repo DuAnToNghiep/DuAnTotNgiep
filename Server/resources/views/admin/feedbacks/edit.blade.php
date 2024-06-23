@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title','Chao mung ban')
+@section('title','Add New Image')
 @section('main-content')
     <div class="container">
         <div class="row">
@@ -58,6 +58,7 @@
                         <strong>Content:</strong>
                         <textarea class="form-control" style="height:150px" name="feedback_content" placeholder="Content">{{ $feedback->feedback_content }}</textarea>
                     </div>
+
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
