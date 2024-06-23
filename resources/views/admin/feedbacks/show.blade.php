@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title','Chao mung ban')
+@section('title','Add New Image')
 @section('main-content')
     <div class="container">
         <h2>Thông tin chi tiết Feedback</h2>

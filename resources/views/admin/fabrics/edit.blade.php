@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="update_date">Update Date:</label>
-                <input type="text" class="form-control" id="update_date" name="update_date" value="{{ $fabric->update_date }}" disabled>
+                <input type="date" class="form-control" id="update_date" name="update_date" value="{{ $fabric->update_date }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>

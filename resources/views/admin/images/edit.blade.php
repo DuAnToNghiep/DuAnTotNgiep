@@ -31,8 +31,9 @@
             </div>
             <div class="form-group">
                 <label for="create_date">Create Date:</label>
-                <input type="date" class="form-control" id="create_date" name="create_date" value="{{ $image->create_date }}" required>
+                <input type="text" class="form-control" id="create_date" name="create_date" value="{{ $image->create_date }}" disabled>
             </div>
+
             <div class="form-group">
                 <label for="update_date">Update Date:</label>
                 <input type="date" class="form-control" id="update_date" name="update_date" value="{{ $image->update_date }}" required>
