@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php /**PATH C:\laragon\www\Datn\DuAnTotNgiep\resources\views/admin/productDetail/show.blade.php ENDPATH**/ ?>
