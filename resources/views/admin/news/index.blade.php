@@ -1,52 +1,531 @@
 @extends('admin.master')
-@section('title','Add New Image')
+@section('title', 'Add New Image')
 @section('main-content')
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>News List</h2>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('news.create') }}"> Create New News</a>
-                </div>
-            </div>
-        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Tạo tin tức mới</div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-        <table class="table table-bordered">
-            <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th width="280px">Action</th>
-            </tr>
-            @php $i = 0 @endphp
-            @foreach ($news as $n)
-                <tr>
-                    <td>{{ ++$i }}</td>
-                    <td>{{ $n->news_title }}</td>
-                    <td>{{ Str::limit($n->news_content, 100) }}</td>
-                    <td>
-                        <form action="{{ route('news.destroy', $n->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('news.show', $n->id) }}">Show</a>
-                            <a class="btn btn-primary" href="{{ route('news.edit', $n->id) }}">Edit</a>
-
+                    <div class="card-body">
+                        <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <div class="form-group">
+                                <label for="news_title">Tiêu đề</label>
+                                <input type="text" class="form-control @error('news_title') is-invalid @enderror"
+                                    id="news_title" name="news_title" value="{{ old('news_title') }}" required>
+                                @error('news_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="news_content">Nội dung</label>
+                                <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                    rows="5" required>{{ old('news_content') }}</textarea>
+                                @error('news_content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="news_image">Ảnh đại diện</label>
+                                <input type="file" class="form-control-file @error('news_image') is-invalid @enderror"
+                                    id="news_image" name="news_image">
+                                @error('news_image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Tạo tin tức</button>
                         </form>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
+                    </div>
+                </div>
+            @endsection
+            @extends('admin.master')
+            @section('title', 'Add New Image')
+            @section('main-content')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Tạo tin tức mới</div>
 
-        {!! $news->links() !!}
-    </div>
-@endsection
+                                <div class="card-body">
+                                    <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <label for="news_title">Tiêu đề</label>
+                                            <input type="text"
+                                                class="form-control @error('news_title') is-invalid @enderror"
+                                                id="news_title" name="news_title" value="{{ old('news_title') }}" required>
+                                            @error('news_title')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="news_content">Nội dung</label>
+                                            <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                rows="5" required>{{ old('news_content') }}</textarea>
+                                            @error('news_content')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="news_image">Ảnh đại diện</label>
+                                            <input type="file"
+                                                class="form-control-file @error('news_image') is-invalid @enderror"
+                                                id="news_image" name="news_image">
+                                            @error('news_image')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Tạo tin tức</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endsection
+
+                        zz
+
+
+
+
+                        @extends('admin.master')
+                        @section('title', 'Add New Image')
+                        @section('main-content')
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">Tạo tin tức mới</div>
+
+                                            <div class="card-body">
+                                                <form action="{{ route('news.store') }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+
+                                                    <div class="form-group">
+                                                        <label for="news_title">Tiêu đề</label>
+                                                        <input type="text"
+                                                            class="form-control @error('news_title') is-invalid @enderror"
+                                                            id="news_title" name="news_title"
+                                                            value="{{ old('news_title') }}" required>
+                                                        @error('news_title')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="news_content">Nội dung</label>
+                                                        <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                            rows="5" required>{{ old('news_content') }}</textarea>
+                                                        @error('news_content')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="news_image">Ảnh đại diện</label>
+                                                        <input type="file"
+                                                            class="form-control-file @error('news_image') is-invalid @enderror"
+                                                            id="news_image" name="news_image">
+                                                        @error('news_image')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Tạo tin tức</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endsection
+                                    @extends('admin.master')
+                                    @section('title', 'Add New Image')
+                                    @section('main-content')
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="card">
+                                                        <div class="card-header">Tạo tin tức mới</div>
+
+                                                        <div class="card-body">
+                                                            <form action="{{ route('news.store') }}" method="POST"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+
+                                                                <div class="form-group">
+                                                                    <label for="news_title">Tiêu đề</label>
+                                                                    <input type="text"
+                                                                        class="form-control @error('news_title') is-invalid @enderror"
+                                                                        id="news_title" name="news_title"
+                                                                        value="{{ old('news_title') }}" required>
+                                                                    @error('news_title')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="news_content">Nội dung</label>
+                                                                    <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                                        rows="5" required>{{ old('news_content') }}</textarea>
+                                                                    @error('news_content')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="news_image">Ảnh đại diện</label>
+                                                                    <input type="file"
+                                                                        class="form-control-file @error('news_image') is-invalid @enderror"
+                                                                        id="news_image" name="news_image">
+                                                                    @error('news_image')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-primary">Tạo tin
+                                                                    tức</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                @endsection
+
+
+
+
+
+
+                                                @extends('admin.master')
+                                                @section('title', 'Add New Image')
+                                                @section('main-content')
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-8">
+                                                                <div class="card">
+                                                                    <div class="card-header">Tạo tin tức mới</div>
+
+                                                                    <div class="card-body">
+                                                                        <form action="{{ route('news.store') }}"
+                                                                            method="POST" enctype="multipart/form-data">
+                                                                            @csrf
+
+                                                                            <div class="form-group">
+                                                                                <label for="news_title">Tiêu đề</label>
+                                                                                <input type="text"
+                                                                                    class="form-control @error('news_title') is-invalid @enderror"
+                                                                                    id="news_title" name="news_title"
+                                                                                    value="{{ old('news_title') }}"
+                                                                                    required>
+                                                                                @error('news_title')
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $message }}</strong>
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="news_content">Nội dung</label>
+                                                                                <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                                                    rows="5" required>{{ old('news_content') }}</textarea>
+                                                                                @error('news_content')
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $message }}</strong>
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="news_image">Ảnh đại
+                                                                                    diện</label>
+                                                                                <input type="file"
+                                                                                    class="form-control-file @error('news_image') is-invalid @enderror"
+                                                                                    id="news_image" name="news_image">
+                                                                                @error('news_image')
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $message }}</strong>
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Tạo tin
+                                                                                tức</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            @endsection
+                                                            @extends('admin.master')
+                                                            @section('title', 'Add New Image')
+                                                            @section('main-content')
+                                                                <div class="container">
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col-md-8">
+                                                                            <div class="card">
+                                                                                <div class="card-header">Tạo tin tức mới
+                                                                                </div>
+
+                                                                                <div class="card-body">
+                                                                                    <form
+                                                                                        action="{{ route('news.store') }}"
+                                                                                        method="POST"
+                                                                                        enctype="multipart/form-data">
+                                                                                        @csrf
+
+                                                                                        <div class="form-group">
+                                                                                            <label for="news_title">Tiêu
+                                                                                                đề</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control @error('news_title') is-invalid @enderror"
+                                                                                                id="news_title"
+                                                                                                name="news_title"
+                                                                                                value="{{ old('news_title') }}"
+                                                                                                required>
+                                                                                            @error('news_title')
+                                                                                                <span class="invalid-feedback"
+                                                                                                    role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
+                                                                                        </div>
+
+                                                                                        <div class="form-group">
+                                                                                            <label for="news_content">Nội
+                                                                                                dung</label>
+                                                                                            <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                                                                rows="5" required>{{ old('news_content') }}</textarea>
+                                                                                            @error('news_content')
+                                                                                                <span class="invalid-feedback"
+                                                                                                    role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
+                                                                                        </div>
+
+                                                                                        <div class="form-group">
+                                                                                            <label for="news_image">Ảnh đại
+                                                                                                diện</label>
+                                                                                            <input type="file"
+                                                                                                class="form-control-file @error('news_image') is-invalid @enderror"
+                                                                                                id="news_image"
+                                                                                                name="news_image">
+                                                                                            @error('news_image')
+                                                                                                <span class="invalid-feedback"
+                                                                                                    role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
+                                                                                        </div>
+
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-primary">Tạo tin
+                                                                                            tức</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endsection
+
+
+
+
+
+
+                                                                        @extends('admin.master')
+                                                                        @section('title', 'Add New Image')
+                                                                        @section('main-content')
+                                                                            <div class="container">
+                                                                                <div class="row justify-content-center">
+                                                                                    <div class="col-md-8">
+                                                                                        <div class="card">
+                                                                                            <div class="card-header">Tạo
+                                                                                                tin tức mới</div>
+
+                                                                                            <div class="card-body">
+                                                                                                <form
+                                                                                                    action="{{ route('news.store') }}"
+                                                                                                    method="POST"
+                                                                                                    enctype="multipart/form-data">
+                                                                                                    @csrf
+
+                                                                                                    <div
+                                                                                                        class="form-group">
+                                                                                                        <label
+                                                                                                            for="news_title">Tiêu
+                                                                                                            đề</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            class="form-control @error('news_title') is-invalid @enderror"
+                                                                                                            id="news_title"
+                                                                                                            name="news_title"
+                                                                                                            value="{{ old('news_title') }}"
+                                                                                                            required>
+                                                                                                        @error('news_title')
+                                                                                                            <span
+                                                                                                                class="invalid-feedback"
+                                                                                                                role="alert">
+                                                                                                                <strong>{{ $message }}</strong>
+                                                                                                            </span>
+                                                                                                        @enderror
+                                                                                                    </div>
+
+                                                                                                    <div
+                                                                                                        class="form-group">
+                                                                                                        <label
+                                                                                                            for="news_content">Nội
+                                                                                                            dung</label>
+                                                                                                        <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                                                                            rows="5" required>{{ old('news_content') }}</textarea>
+                                                                                                        @error('news_content')
+                                                                                                            <span
+                                                                                                                class="invalid-feedback"
+                                                                                                                role="alert">
+                                                                                                                <strong>{{ $message }}</strong>
+                                                                                                            </span>
+                                                                                                        @enderror
+                                                                                                    </div>
+
+                                                                                                    <div
+                                                                                                        class="form-group">
+                                                                                                        <label
+                                                                                                            for="news_image">Ảnh
+                                                                                                            đại diện</label>
+                                                                                                        <input
+                                                                                                            type="file"
+                                                                                                            class="form-control-file @error('news_image') is-invalid @enderror"
+                                                                                                            id="news_image"
+                                                                                                            name="news_image">
+                                                                                                        @error('news_image')
+                                                                                                            <span
+                                                                                                                class="invalid-feedback"
+                                                                                                                role="alert">
+                                                                                                                <strong>{{ $message }}</strong>
+                                                                                                            </span>
+                                                                                                        @enderror
+                                                                                                    </div>
+
+                                                                                                    <button type="submit"
+                                                                                                        class="btn btn-primary">Tạo
+                                                                                                        tin tức</button>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endsection
+                                                                                    @extends('admin.master')
+                                                                                    @section('title', 'Add New Image')
+                                                                                    @section('main-content')
+                                                                                        <div class="container">
+                                                                                            <div
+                                                                                                class="row justify-content-center">
+                                                                                                <div class="col-md-8">
+                                                                                                    <div class="card">
+                                                                                                        <div
+                                                                                                            class="card-header">
+                                                                                                            Tạo tin tức mới
+                                                                                                        </div>
+
+                                                                                                        <div
+                                                                                                            class="card-body">
+                                                                                                            <form
+                                                                                                                action="{{ route('news.store') }}"
+                                                                                                                method="POST"
+                                                                                                                enctype="multipart/form-data">
+                                                                                                                @csrf
+
+                                                                                                                <div
+                                                                                                                    class="form-group">
+                                                                                                                    <label
+                                                                                                                        for="news_title">Tiêu
+                                                                                                                        đề</label>
+                                                                                                                    <input
+                                                                                                                        type="text"
+                                                                                                                        class="form-control @error('news_title') is-invalid @enderror"
+                                                                                                                        id="news_title"
+                                                                                                                        name="news_title"
+                                                                                                                        value="{{ old('news_title') }}"
+                                                                                                                        required>
+                                                                                                                    @error('news_title')
+                                                                                                                        <span
+                                                                                                                            class="invalid-feedback"
+                                                                                                                            role="alert">
+                                                                                                                            <strong>{{ $message }}</strong>
+                                                                                                                        </span>
+                                                                                                                    @enderror
+                                                                                                                </div>
+
+                                                                                                                <div
+                                                                                                                    class="form-group">
+                                                                                                                    <label
+                                                                                                                        for="news_content">Nội
+                                                                                                                        dung</label>
+                                                                                                                    <textarea class="form-control @error('news_content') is-invalid @enderror" id="news_content" name="news_content"
+                                                                                                                        rows="5" required>{{ old('news_content') }}</textarea>
+                                                                                                                    @error('news_content')
+                                                                                                                        <span
+                                                                                                                            class="invalid-feedback"
+                                                                                                                            role="alert">
+                                                                                                                            <strong>{{ $message }}</strong>
+                                                                                                                        </span>
+                                                                                                                    @enderror
+                                                                                                                </div>
+
+                                                                                                                <div
+                                                                                                                    class="form-group">
+                                                                                                                    <label
+                                                                                                                        for="news_image">Ảnh
+                                                                                                                        đại
+                                                                                                                        diện</label>
+                                                                                                                    <input
+                                                                                                                        type="file"
+                                                                                                                        class="form-control-file @error('news_image') is-invalid @enderror"
+                                                                                                                        id="news_image"
+                                                                                                                        name="news_image">
+                                                                                                                    @error('news_image')
+                                                                                                                        <span
+                                                                                                                            class="invalid-feedback"
+                                                                                                                            role="alert">
+                                                                                                                            <strong>{{ $message }}</strong>
+                                                                                                                        </span>
+                                                                                                                    @enderror
+                                                                                                                </div>
+
+                                                                                                                <button
+                                                                                                                    type="submit"
+                                                                                                                    class="btn btn-primary">Tạo
+                                                                                                                    tin
+                                                                                                                    tức</button>
+                                                                                                            </form>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                @endsection
