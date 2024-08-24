@@ -2358,3 +2358,34 @@
                                                     <p><strong>Nội dung:</strong></p>
                                                     <p>{{ $news->news_content }}</p>
                                                     @if ($news->news_image)
+                                                        @section('title', 'Add New Image')
+                                                    @section('main-content')
+                                                        <div class="container">
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-md-8">
+                                                                    <div class="card">
+                                                                        <div class="card-header">{{ $news->news_title }}
+                                                                        </div>
+
+                                                                        <div class="card-body">
+                                                                            <p><strong>Nội dung:</strong></p>
+                                                                            <p>{{ $news->news_content }}</p>
+                                                                            @if ($news->news_image)
+                                                                                @section('title', 'Add New Image')
+                                                                            @section('main-content')
+                                                                                <div class="container">
+                                                                                    <div
+                                                                                        class="row justify-content-center">
+                                                                                        <div class="col-md-8">
+                                                                                            <div class="card">
+                                                                                                <div class="card-header">
+                                                                                                    {{ $news->news_title }}
+                                                                                                </div>
+
+                                                                                                <div class="card-body">
+                                                                                                    <p><strong>Nội
+                                                                                                            dung:</strong>
+                                                                                                    </p>
+                                                                                                    <p>{{ $news->news_content }}
+                                                                                                    </p>
+                                                                                                    @if ($news->news_image)
